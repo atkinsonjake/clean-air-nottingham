@@ -1,5 +1,4 @@
-<img width="200" alt="CAN_logo" src="https://user-images.githubusercontent.com/57331656/213808428-304cc8cb-6cf6-4ef4-bc75-cf2fba570d39.png">
-
+<img width="300" alt="can_logo" src="https://user-images.githubusercontent.com/57331656/213808913-ff6ba213-0119-45d8-9763-5c0e44db2775.png">
 
 CAN is a community-led action group working to promote clean air in Nottingham.
 This repo contains all analysis conducted, and services created, by CAN.
