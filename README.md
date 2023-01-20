@@ -1,4 +1,4 @@
-<img width="407" alt="short_logo_transparent" src="https://user-images.githubusercontent.com/57331656/213807645-337304e5-c0b7-4eae-b0cf-2399fb75fe22.png">
+<img width="200" alt="CAN_logo" src="https://user-images.githubusercontent.com/57331656/213808428-304cc8cb-6cf6-4ef4-bc75-cf2fba570d39.png">
 
 
 CAN is a community-led action group working to promote clean air in Nottingham.
