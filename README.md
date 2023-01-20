@@ -3,4 +3,4 @@
 CAN is a community-led action group working to promote clean air in Nottingham.
 This repo contains all analyses conducted, and services created, by CAN.
 
-You can keep up with out work here and on [Facebook](https://www.facebook.com/cleanairnottingham)!
+You can keep up with our work here and on [Facebook](https://www.facebook.com/cleanairnottingham)!
