@@ -35,5 +35,10 @@ class PurpleAirParser:
         latest_data = requests.get(f"{self.config.API_ADDRESS}/{sensor_index}", headers=headers)
         return latest_data.json()
 
+    def _load_historical_data(self, sensor_index: int) -> dict:
+        headers = {"X-API-Key": self.config.API_KEY_R}
+        latest_data = requests.get(f"{self.config.API_ADDRESS}/{sensor_index}/history", headers=headers)
+        return latest_data.json()
+
     def _parse_latest_data(self) -> list:
         return [self._sort_latest_data(self._load_latest_data(index)) for index in self.config.CAN_SENSOR_INDICES]
