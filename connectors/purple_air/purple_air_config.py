@@ -8,7 +8,7 @@ class PurpleAirConfig(BaseSettings):
     These configs define the structure of the data pulled from the Purple Air API.
     API_KEY should be stored in a local .env file.
     '''
-    API_ADDRESS: str = Field("https://api.purpleair.com/v1")
+    API_ADDRESS: str = Field("https://api.purpleair.com/v1/sensors")
     API_KEY_R: str = Field(None, env="PA_API_KEY_R")
     API_KEY_W: str = Field(None, env="PA_API_KEY_W")
     LATITUDE: str = Field('latitude')
@@ -25,3 +25,5 @@ class PurpleAirConfig(BaseSettings):
     OZONE: str = Field('ozone1')
     SCATTERING_COEFF: str = Field('scattering_coefficient')
     BATCH_SIZE = 100  # CHECK THIS
+
+    
