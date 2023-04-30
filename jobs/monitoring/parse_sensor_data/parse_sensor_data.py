@@ -1,8 +1,7 @@
-from connectors.purple_air.purple_air_config import PurpleAirConfig
 from datetime import datetime
 import requests
 from typing import List, Union
-
+from connectors.purple_air.purple_air_config import PurpleAirConfig
 
 class PurpleAirParser:
     '''
@@ -14,6 +13,7 @@ class PurpleAirParser:
 
     def __init__(self):
         self.config = PurpleAirConfig()
+
 
     def _sort_latest_data(self, data: dict) -> dict:
         '''Returns key sensor stats from API response.'''
@@ -31,10 +31,12 @@ class PurpleAirParser:
         }
         return sorted_data
 
+
     def _load_latest_data(self, sensor_index: int) -> dict:
         headers = {"X-API-Key": self.config.API_KEY_R}
         latest_data = requests.get(f"{self.config.API_ADDRESS}/{sensor_index}", headers=headers)
         return latest_data.json()
+
 
     def _load_historical_data(self, sensor_index: int, 
                               start_timestamp: datetime = None, 
@@ -54,17 +56,17 @@ class PurpleAirParser:
             - (dict) values
         '''
         headers = {"X-API-Key": self.config.API_KEY_R}
-        if isinstance(measurement, list):
-            measurement_str = "%2C%".join(measurement)
-        else:
-            measurement_str = measurement[0]
+        measurement_str = "%2C".join(measurement) if isinstance(measurement, list) else measurement
 
-        if not all([start_timestamp, end_timestamp, measurement, average_time]):
-            historical_data = requests.get(f"{self.config.API_ADDRESS}/{sensor_index}/history?average={average_time}", headers=headers)
-        else: 
-            historical_data = requests.get(f"{self.config.API_ADDRESS}/{sensor_index}/history?start_timestamp={start_timestamp}&\
-                                        end_timestamp={end_timestamp}&average={average_time}&fields={measurement_str}", headers=headers)
+        if start_timestamp and end_timestamp and measurement and average_time:
+            url = f"{self.config.API_ADDRESS}/{sensor_index}/history?start_timestamp={start_timestamp}&end_timestamp={end_timestamp}&average={average_time}&fields={measurement_str}"
+        else:
+            url = f"{self.config.API_ADDRESS}/{sensor_index}/history?average={average_time}&fields={measurement_str}"
+        
+        historical_data = requests.get(url, headers=headers)
         return historical_data.json()
+
 
     def _parse_latest_data(self) -> list:
         return [self._sort_latest_data(self._load_latest_data(index)) for index in self.config.CAN_SENSOR_INDICES]
+    
