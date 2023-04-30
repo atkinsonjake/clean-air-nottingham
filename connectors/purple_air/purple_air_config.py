@@ -14,6 +14,7 @@ class PurpleAirConfig(BaseSettings):
     LATITUDE: str = Field('latitude')
     LONGITUDE: str = Field('longitude')
     ALTITUDE: str = Field('altitude')
+    CAN_SENSOR_GROUP: int = Field(1711) # Created 30 Apr 2023
     CAN_SENSOR_INDICES: List[str] = Field(["145006", '144088', '3113', '144988', '144918']) # Updated 21 Jan 2023
     AVERAGE_HUMIDITY: str = Field('temperature')
     AVERAGE_TEMPERATURE: str = Field('humidity')
