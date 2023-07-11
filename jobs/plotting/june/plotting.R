@@ -19,7 +19,7 @@ library(hrbrthemes)
 library(lubridate)
 
 # Data
-comparisons <- read.csv('/Users/jakeatkinson/Documents/Personal/clean-air-nottingham/response_data/processed_data.csv')
+comparisons <- read.csv('june_processed_data.csv')
 comparisons <- subset(comparisons, select = -X)
 comparisons <- na.omit(comparisons)
 comparisons$sensor_index <- factor(comparisons$sensor_index)
