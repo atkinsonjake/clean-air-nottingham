@@ -1,3 +1,5 @@
+import pandas as pd
+
 def filter_on_channels(dataframe, channel_a, channel_b, max_diff=5, max_pct_diff=0.61) -> pd.DataFrame:
     '''
     Filters rows in the DataFrame based on the absolute and percentage difference 
