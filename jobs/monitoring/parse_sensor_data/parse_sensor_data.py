@@ -69,4 +69,37 @@ class PurpleAirParser:
 
     def _parse_latest_data(self) -> list:
         return [self._sort_latest_data(self._load_latest_data(index)) for index in self.config.CAN_SENSOR_INDICES]
-    
+
+
+    def parse_api_response(self, response):
+        """
+        Parses the response from PurpleAir.
+
+        Args:
+            response (dict): The response data from the PurpleAir API, including 'fields' and 'data' keys.
+
+        Returns:
+            list: A list of dictionaries representing individual records, where each record maps field names to values.
+
+        Raises:
+            KeyError: If the 'fields' or 'data' key is not found in the response data.
+
+        Example:
+            response_data = {
+                "fields": ["timestamp", "pm2.5", "temperature"],
+                "data": [
+                    [1637326800, 10.2, 25.0],
+                    [1637326860, 9.8, 25.5],
+                    # ...
+                ]
+            }
+            records = parse_api_response(response_data)
+        """
+        fields = response["fields"]
+        data_entries = response["data"]
+
+        records = []
+        for entry in data_entries:
+            record = dict(zip(fields, entry))
+            records.append(record)
+        return records
