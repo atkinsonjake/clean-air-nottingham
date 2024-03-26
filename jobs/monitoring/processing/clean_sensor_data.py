@@ -1,4 +1,6 @@
-def filter_on_channels(dataframe, channel_a, channel_b, max_diff=5, max_pct_diff=0.61):
+import pandas as pd
+
+def filter_on_channels(dataframe, channel_a, channel_b, max_diff=5, max_pct_diff=0.61) -> pd.DataFrame:
     '''
     Filters rows in the DataFrame based on the absolute and percentage difference 
     between two specified columns representing sensor channels A and B.
@@ -25,3 +27,27 @@ def filter_on_channels(dataframe, channel_a, channel_b, max_diff=5, max_pct_diff
     return dataframe[condition].copy()
 
 
+
+def convert_to_dataframe(response_dictionary) -> pd.DataFrame:
+    """
+    Convert a dictionary of sensor data into a pandas DataFrame.
+
+    The input dictionary should have sensor IDs as keys and lists of measurement dictionaries as values.
+    Each measurement dictionary in the input will be flattened, with the sensor ID added to it.
+
+    Parameters:
+    - response_dictionary (dict): A dictionary with sensor IDs as keys and lists of measurement
+                                  dictionaries as values.
+
+    Returns:
+    - pandas.DataFrame: A DataFrame containing the flattened sensor data, showing only the first
+                        few rows.
+    """
+    flattened_data = []
+
+    for sensor_id, readings in response_dictionary.items():
+        for reading in readings[0]: 
+            reading['sensor_id'] = sensor_id
+            flattened_data.append(reading)
+
+    return pd.DataFrame(flattened_data)
