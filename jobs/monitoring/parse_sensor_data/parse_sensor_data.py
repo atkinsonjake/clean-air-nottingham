@@ -71,7 +71,7 @@ class PurpleAirParser:
         return [self._sort_latest_data(self._load_latest_data(index)) for index in self.config.CAN_SENSOR_INDICES]
 
 
-    def parse_api_response(self, response):
+    def parse_api_response(self, response) -> list:
         """
         Parses the response from PurpleAir.
 

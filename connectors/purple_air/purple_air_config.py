@@ -26,3 +26,14 @@ class PurpleAirConfig(BaseSettings):
     OZONE: str = Field('ozone1')
     SCATTERING_COEFF: str = Field('scattering_coefficient')
     BATCH_SIZE = 100  # CHECK THIS
+    
+    CAN_COLOURS = ["#3d5a80", "#98c1d9", "#ee6c4d", "#e0fbfc"]
+
+    # Multi-channel readings
+    ESTIMATED_PM_1_A: str = Field('pm1.0_atm_a')
+    ESTIMATED_PM_1_B: str = Field('pm1.0_atm_b')
+    ESTIMATED_PM_2_POINT_5_A: str = Field('pm2.5_atm_a')
+    ESTIMATED_PM_2_POINT_5_B: str = Field('pm2.5_atm_b')
+    ESTIMATED_PM_10_A: str = Field('pm10.0_atm_a')
+    ESTIMATED_PM_10_B: str = Field('pm10.0_atm_b')
+    
