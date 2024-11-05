@@ -31,3 +31,17 @@ def calibrate_reading(s1: float, s2: float, s3: float, pm25: float, rh: float, i
 
     adjusted_rh = rh**2 / (1 - rh)
     return s1 * pm25 + s2 * adjusted_rh * pm25 + s3 * adjusted_rh + i
+
+def calculate_pm25(pa_cf_1, rh):
+    """
+    Calculate PM2.5 using the given correction model equation:
+    PM2.5 = 0.524 * PA_cf_1 - 0.0862 * RH + 5.75
+
+    Parameters:
+    pa_cf_1 (float): The average of the A and B channels from the higher correction factor (cf_1)
+    rh (float): Relative humidity in percent
+
+    Returns:
+    float: Calculated PM2.5 value
+    """
+    return 0.524 * pa_cf_1 - 0.0862 * rh + 5.75
